@@ -22,7 +22,8 @@
       integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
       crossorigin="anonymous"
     ></script>
-    <script defer src="{{ url_for('static', filename='index.js') }}"></script>
+    <script defer 
+    src="{{ url_for('static', filename='index.js') }}"></script>
     <title>{% block title %}Home{% endblock %}</title>
   </head>
   <body>
@@ -42,17 +43,21 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+
+            {% if user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link " aria-current="page" href="/"> Home </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link " aria-current="page" href="/login">
-                Login
-              </a>
-            </li>
+            
             <li class="nav-item">
               <a class="nav-link " aria-current="page" href="/logout">
                 Logout
+              </a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link " aria-current="page" href="/login">
+                Login
               </a>
             </li>
             <li class="nav-item">
@@ -60,6 +65,7 @@
                 Signup
               </a>
             </li>
+            {% endif %}
           </ul>
         </div>
       </div>
